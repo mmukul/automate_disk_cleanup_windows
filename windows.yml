@@ -1,0 +1,8 @@
+---
+
+# Automate disk cleanup on windows with Ansible
+
+- hosts: windowsservers
+  gather_facts: no
+  roles:
+    - win_disk_cleanup
