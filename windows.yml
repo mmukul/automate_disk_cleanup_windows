@@ -2,7 +2,7 @@
 
 # Automate disk cleanup on windows with Ansible
 
-- hosts: windowsservers
+- hosts: win_test
   gather_facts: no
   roles:
     - win_disk_cleanup
