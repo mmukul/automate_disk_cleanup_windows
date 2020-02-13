@@ -3,10 +3,7 @@
 
 [win_test:vars]
 ansible_user=mmalhotra
-#ansible_password
 ansible_connection=winrm
 ansible_port=5986
 ansible_winrm_server_cert_validation=ignore
-ansible_winrm_scheme=http
-ansible_winrm_scheme=https
 ansible_winrm_transport=ntlm

@@ -248,3 +248,18 @@
     type: dword
     data: 2
     state: "{{ (cleanmgr_windows_upgrade_log_files|bool)|ternary('present','absent') }}"
+
+# Clear RecycleBin for C drive
+- name: "Clear RecycleBin"
+  win_shell: "Clear-RecycleBin -DriveLetter C -force -ErrorAction:Ignore"
+
+
+- name: "Run diskclean.exe"
+  win_shell: "Start-Process -FilePath CleanMgr.exe -ArgumentList '/sagerun:{{ cleanmgr_sagerun[-4:]|int }}' -WindowStyle Hidden -Wait"
+  args:
+    creates: "{{ lookup('env', 'windir') }}\\Logs\\CBS\\DeepClean.log"
+  register: cleanmgr_process
+
+- debug:
+    var: cleanmgr_process
+    verbosity: 1
